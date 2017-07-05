@@ -88,3 +88,6 @@
 [submodule "extra/lua-cjson"]
 	path = extra/lua-cjson
 	url = https://github.com/mpx/lua-cjson
+[submodule "extra/tds"]
+	path = extra/tds
+	url = https://github.com/torch/tds.git
