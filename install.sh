@@ -205,6 +205,7 @@ cd ${THIS_DIR}/exe/qtlua            && $PREFIX/bin/luarocks make rocks/qtlua-scm
 cd ${THIS_DIR}/pkg/qttorch          && $PREFIX/bin/luarocks make rocks/qttorch-scm-1.rockspec
 cd ${THIS_DIR}/extra/threads        && $PREFIX/bin/luarocks make rocks/threads-scm-1.rockspec
 cd ${THIS_DIR}/extra/argcheck       && $PREFIX/bin/luarocks make rocks/argcheck-scm-1.rockspec
+cd ${THIS_DIR}/extra/tds            && $PREFIX/bin/luarocks make rocks/tds-scm-1.rockspec
 
 # Optional CUDA packages
 if [ -x "$path_to_nvcc" ]
