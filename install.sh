@@ -5,8 +5,9 @@ export CXX=
 #compiling option
 
 intel=$1    # compiler icc/gcc
-avx512=$2   # AVX512F on/off 
-omp=$3      # intel intel/gnu
+avx512=$2   # AVX512F on/off
+use_mklml=$3 
+omp=$4      # intel intel/gnu
 
 
 FORCE_AVX512_v=OFF
@@ -15,6 +16,13 @@ if [[ $avx512 == 'avx512' ]]; then
 else
   FORCE_AVX512_v=OFF
 fi
+USE_MKLML_v=ON
+if [[ $use_mklml == 'mklml' ]]; then
+  USE_MKLML_v=ON
+else
+  USE_MKLML_v=OFF
+fi
+
 
 WITH_IOMP_v=ON
 if [[ $omp == 'iomp' ]]; then
@@ -105,7 +113,7 @@ if [[ `uname` == 'Linux' ]]; then
 fi
 export CMAKE_PREFIX_PATH=$PREFIX
 
-git submodule update --init --recursive
+#git submodule update --init --recursive
 
 # If we're on OS X, use clang
 if [[ `uname` == "Darwin" ]]; then
@@ -176,7 +184,7 @@ cd ${THIS_DIR}/extra/luaffifb && $PREFIX/bin/luarocks make luaffi-scm-1.rockspec
 cd ${THIS_DIR}/pkg/sundown   && $PREFIX/bin/luarocks make rocks/sundown-scm-1.rockspec || exit 1
 cd ${THIS_DIR}/pkg/cwrap        && $PREFIX/bin/luarocks make rocks/cwrap-scm-1.rockspec   || exit 1
 cd ${THIS_DIR}/pkg/paths        && $PREFIX/bin/luarocks make rocks/paths-scm-1.rockspec   || exit 1
-cd ${THIS_DIR}/pkg/torch        && $PREFIX/bin/luarocks make WITH_IOMP=$WITH_IOMP_v FORCE_AVX512=$FORCE_AVX512_v  rocks/torch-scm-1.rockspec   || exit 1
+cd ${THIS_DIR}/pkg/torch        && $PREFIX/bin/luarocks make WITH_IOMP=$WITH_IOMP_v FORCE_AVX512=$FORCE_AVX512_v USE_MKLML=$USE_MKLML_v rocks/torch-scm-1.rockspec   || exit 1
 cd ${THIS_DIR}/pkg/dok          && $PREFIX/bin/luarocks make rocks/dok-scm-1.rockspec     || exit 1
 cd ${THIS_DIR}/exe/trepl        && $PREFIX/bin/luarocks make trepl-scm-1.rockspec         || exit 1
 cd ${THIS_DIR}/pkg/sys          && $PREFIX/bin/luarocks make sys-1.1-0.rockspec           || exit 1
