@@ -30,11 +30,12 @@ export CMAKE_LIBRARY_PATH=$MKL_LIBRARY:$CMAKE_LIBRARY_PATH
 #### Lua and Torch
 The self-contained Lua and Torch installations are performed via:
 ```bash
-./install.sh [intel] [avx512] [gomp]
+./install.sh [intel] [avx512] [mkl] [gomp]
 ```
 param:  
  * intel/gnu    using intel compiler, Default using intel openmp.  
  * avx/avx512   forcing compilers(GCC version should be greater than 4.9) to use AVX512F instructions to compile the framework.  
+ * mkl/mklml    using mkl or mklml, Default using mklml.
  * gomp/iomp    using gnu openmp. Default using intel openmp.     
 
 By default Torch will install LuaJIT 2.1. If you want other options, you can use the command:
