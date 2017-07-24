@@ -115,9 +115,9 @@ if [[ `uname` == 'Linux' ]]; then
     MKLML_LIBRARY_PATH=$MKL_ROOT/lib
     MKLML_INCLUDE_PATH=$MKL_ROOT/include
     
-    export CMAKE_LIBRARY_PATH=/opt/OpenBLAS/include:/opt/OpenBLAS/lib:$MKLML_LIBRARY_PATH:$CMAKE_LIBRARY_PATH
-    export CMAKE_INCLUDE_PATH=/opt/OpenBLAS/include:$MKLML_INCLUDE_PATH:$CMAKE_INCLUDE_PATH
-    export CMAKE_LIBRARY_PATH=$PREFIX/include:/opt/OpenBLAS/include:$PREFIX/lib:/opt/OpenBLAS/lib:$CMAKE_LIBRARY_PATH
+    export CMAKE_LIBRARY_PATH=$MKLML_LIBRARY_PATH:/opt/OpenBLAS/include:/opt/OpenBLAS/lib:$CMAKE_LIBRARY_PATH
+    export CMAKE_INCLUDE_PATH=$MKLML_INCLUDE_PATH:/opt/OpenBLAS/include:$CMAKE_INCLUDE_PATH
+    
 fi
 export CMAKE_PREFIX_PATH=$PREFIX
 
