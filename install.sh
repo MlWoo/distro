@@ -96,8 +96,8 @@ if [[ `uname` == 'Linux' ]]; then
     RETURN_STRING=`./prepare_mklml.sh $ICC_ON`
     export MKLML_ROOT=`echo $RETURN_STRING | awk '{print $1}'`
     echo $MKLML_ROOT
-    MKLML_LIBRARY_PATH=$MKLROOT/lib
-    MKLML_INCLUDE_PATH=$MKLROOT/include
+    MKLML_LIBRARY_PATH=$MKL_ROOT/lib
+    MKLML_INCLUDE_PATH=$MKL_ROOT/include
     
     export CMAKE_LIBRARY_PATH=/opt/OpenBLAS/include:/opt/OpenBLAS/lib:$MKLML_LIBRARY_PATH:$CMAKE_LIBRARY_PATH
     export CMAKE_INCLUDE_PATH=/opt/OpenBLAS/include:$MKLML_INCLUDE_PATH:$CMAKE_INCLUDE_PATH
