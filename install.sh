@@ -102,10 +102,16 @@ if [[ `uname` == 'Linux' ]]; then
        echo 'using GNU compilter to compile torch'
     fi
 
-    #`./prepare_mklml.sh $ICC_ON`
-    RETURN_STRING=`./prepare_mklml.sh $ICC_ON`
-    export MKLML_ROOT=`echo $RETURN_STRING | awk '{print $1}'`
-    echo $MKLML_ROOT
+    #`./prepare_mklml.sh $ICC_ON $USE_MKLML_v`
+    RETURN_STRING=`./prepare_mklml.sh $ICC_ON $USE_MKLML_v`
+    export MKL_ROOT=`echo $RETURN_STRING | awk '{print $1}'`
+    if [ $USE_MKLML_v == ON ]; then
+    echo "Path of MKLML_ROOT is:"
+    else
+    echo "Path of MKL_ROOT is:"
+    fi
+    echo $MKL_ROOT
+
     MKLML_LIBRARY_PATH=$MKL_ROOT/lib
     MKLML_INCLUDE_PATH=$MKL_ROOT/include
     
@@ -115,7 +121,7 @@ if [[ `uname` == 'Linux' ]]; then
 fi
 export CMAKE_PREFIX_PATH=$PREFIX
 
-#git submodule update --init --recursive
+git submodule update --init --recursive
 
 # If we're on OS X, use clang
 if [[ `uname` == "Darwin" ]]; then
