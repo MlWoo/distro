@@ -15,15 +15,9 @@ bash install-deps
 ```
 MKL should be installed manully, you can download MKL from this [link](https://registrationcenter.intel.com/en/products/postregistration/?sn=33RM-SVW7ZRXR&EmailID=xiaohui.zhao%40intel.com&Sequence=1791078&dnld=t).
 
-Please activate MKL like this:
+Please activate MKL only by using one line in your bashrc file like this:
 ```bash
-export MKL_ROOT=/opt/intel/mkl
-export MKL_INCLUDE=$MKL_ROOT/include
-export MKL_LIBRARY=$MKL_ROOT/lib/intel64
 source /opt/intel/mkl/bin/mklvars.sh intel64
-source /opt/intel/bin/compilervars.sh intel64
-export CMAKE_INCLUDE_PATH=$MKL_INCLUDE:$CMAKE_INCLUDE_PATH
-export CMAKE_LIBRARY_PATH=$MKL_LIBRARY:$CMAKE_LIBRARY_PATH
 ```
 
 
@@ -37,6 +31,11 @@ param:
  * avx/avx512   forcing compilers(GCC version should be greater than 4.9) to use AVX512F instructions to compile the framework.  
  * mkl/mklml    using mkl or mklml, Default using mkl.
 
+Here is an example you may need to install torch using intel compiler, AVX512F instructions to compile the framework and linking it to mkl.
+```bash
+ ./install.sh intel avx512
+
+```
 By default Torch will install LuaJIT 2.1. If you want other options, you can use the command:
 ```bash
 # If a different version was installed, used ./clean.sh to clean it
