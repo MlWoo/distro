@@ -7,7 +7,7 @@ export CXX=
 intel=$1    # compiler icc/gcc
 avx512=$2   # AVX512F on/off
 use_mklml=$3 
-omp=$4      # intel intel/gnu
+#omp=$4      # intel intel/gnu
 
 
 FORCE_AVX512_v=OFF
@@ -16,7 +16,7 @@ if [[ $avx512 == 'avx512' ]]; then
 else
   FORCE_AVX512_v=OFF
 fi
-USE_MKLML_v=ON
+USE_MKLML_v=OFF
 if [[ $use_mklml == 'mklml' ]]; then
   USE_MKLML_v=ON
 else
@@ -25,11 +25,13 @@ fi
 
 
 WITH_IOMP_v=ON
+:<<hallo
 if [[ $omp == 'iomp' ]]; then
   WITH_IOMP_v=ON
 elif [[ $omp == 'gomp' ]]; then 
   WITH_IOMP_v=OFF
 fi
+hallo
 
 SKIP_R=0
 BATCH_INSTALL=0
